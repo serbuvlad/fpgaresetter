@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"regexp"
+	"slices"
 	"strconv"
 	"strings"
 )
@@ -30,6 +32,19 @@ func removeAll[T comparable](l []T, item T) []T {
 	return l
 }
 
+func findFirst(l []string) []string {
+	r := regexp.MustCompile("^\\s*1")
+
+	for len(l) > 0 {
+		if r.MatchString(l[0]) {
+			break
+		}
+
+		l = slices.Delete(l, 0, 0)
+	}
+
+	return l
+}
 
 func getItems() []string {
 	cmd := exec.Command("xsdb", printtargetsFilePath)
@@ -48,6 +63,8 @@ func getItems() []string {
 	items := strings.Split(outb.String(), "\n")
 
 	items = removeAll(items, "")
+
+	items = findFirst(items)
 
 	return items
 }
