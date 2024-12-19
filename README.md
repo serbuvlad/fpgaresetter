@@ -25,13 +25,18 @@ Make sure the cable drivers are installed. The following should be run once:
 sudo /tools/Xilinx/Vivado/2024.2/data/xicom/cable_drivers/lin64/install_script/install_drivers/install_drivers
 ```
 
-## Installing
+## Installing using `go get`
 
 To install, make sure `$(go env GOPATH)/bin` is in your path, then run
 
 ```
 go install github.com/serbuvlad/fpgaresetter@latest
 ```
+
+## Installing using the binary
+
+Alternatively, download the latest binary from the releases page and
+place it in a directory in your PATH.
 
 ## Running
 
